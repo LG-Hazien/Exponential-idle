@@ -10,105 +10,25 @@ var description = "The Classic Machine Theory";
 var authors = "JojoGames320";
 var version = 1;
 
-var rhoN = BigNumber.ZERO;
-var rhoNm1 = BigNumber.ZERO;
-var rhoNm2 = BigNumber.ZERO;
 var time = 0;
 
-var stringTickspeed = "\\text{{" + Localization.get("TheoryPanelTickspeed", "}}q_1q_2\\text{{", "}}{0}\\text{{") + "}}";
-var epsilon = BigNumber.from(1e-8);
-
-var currency;
-var q1, q2, c1, c2, c3, c4;
-var c1Exp, logTerm, c3Term, c4Term;
+var currency, currency2;
 
 var init = () => {
     currency = theory.createCurrency();
+    currency2 = theory.createCurrency();
 
     ///////////////////
     // Regular Upgrades
 
-    // q1 (Tickspeed)
-    {
-        let getDesc = (level) => "q_1=" + getQ1(level).toString(0);
-        q1 = theory.createUpgrade(0, currency, new FirstFreeCost(new ExponentialCost(5, Math.log2(2))));
-        q1.getDescription = (_) => Utils.getMath(getDesc(q1.level));
-        q1.getInfo = (amount) => Utils.getMathTo(getDesc(q1.level), getDesc(q1.level + amount));
-        q1.boughtOrRefunded = (_) => theory.invalidateTertiaryEquation();
-    }
-
-    // q2 (Tickspeed)
-    {
-        let getDesc = (level) => "q_2=2^{" + level + "}";
-        let getInfo = (level) => "q_2=" + getQ2(level).toString(0);
-        q2 = theory.createUpgrade(1, currency, new ExponentialCost(100, Math.log2(10)));
-        q2.getDescription = (_) => Utils.getMath(getDesc(q2.level));
-        q2.getInfo = (amount) => Utils.getMathTo(getInfo(q2.level), getInfo(q2.level + amount));
-        q2.boughtOrRefunded = (_) => theory.invalidateTertiaryEquation();
-    }
-
-    // c1
-    {
-        let getDesc = (level) => "c_1=" + getC1(level).toString(0);
-        c1 = theory.createUpgrade(2, currency, new ExponentialCost(15, Math.log2(2)));
-        c1.getDescription = (_) => Utils.getMath(getDesc(c1.level));
-        c1.getInfo = (amount) => Utils.getMathTo(getDesc(c1.level), getDesc(c1.level + amount));
-    }
-
-    // c2
-    {
-        let getDesc = (level) => "c_2=2^{" + level + "}";
-        let getInfo = (level) => "c_2=" + getC2(level).toString(0);
-        c2 = theory.createUpgrade(3, currency, new ExponentialCost(3000, Math.log2(10)));
-        c2.getDescription = (_) => Utils.getMath(getDesc(c2.level));
-        c2.getInfo = (amount) => Utils.getMathTo(getInfo(c2.level), getInfo(c2.level + amount));
-    }
-
-    // c3
-    {
-        let getDesc = (level) => "c_3=10^{" + level + "}";
-        let getInfo = (level) => "c_3=" + getC3(level).toString(0);
-        c3 = theory.createUpgrade(4, currency, new ExponentialCost(1e4, 4.5 * Math.log2(10)));
-        c3.getDescription = (_) => Utils.getMath(getDesc(c3.level));
-        c3.getInfo = (amount) => Utils.getMathTo(getInfo(c3.level), getInfo(c3.level + amount));
-        c3.isAvailable = false;
-    }
-
-    // c4
-    {
-        let getDesc = (level) => "c_4=10^{" + level + "}";
-        let getInfo = (level) => "c_4=" + getC4(level).toString(0);
-        c4 = theory.createUpgrade(5, currency, new ExponentialCost(1e10, 8 * Math.log2(10)));
-        c4.getDescription = (_) => Utils.getMath(getDesc(c4.level));
-        c4.getInfo = (amount) => Utils.getMathTo(getInfo(c4.level), getInfo(c4.level + amount));
-        c4.isAvailable = false;
-    }
-
     /////////////////////
     // Permanent Upgrades
-    theory.createPublicationUpgrade(0, currency, 1e10);
-    theory.createBuyAllUpgrade(1, currency, 1e13);
-    theory.createAutoBuyerUpgrade(2, currency, 1e30);
-  
-    
-    
+    theory.createPublicationUpgrade(0, currency, 1e18);
+    theory.createBuyAllUpgrade(1, currency, 1e21);
+    theory.createAutoBuyerUpgrade(2, currency2, 1000);
     
     /////////////////
-    //// Achievements
-    ac1 = theory.createAchievementCategory(0, "Upgrades");
-    theory.createAchievement(0, ac1, "beginner", "Buy the first upgrade", () => q1.level > 0);
-    theory.createAchievement(1, ac1, "Starter", "Buy 10 upgrades of q1", () => q1.level > 9);
-    theory.createAchievement(2, ac1, "Pro Robot x11", "Buy 30 upgrades of q1", () => q1.level > 29);
-    theory.createAchievement(3, ac1, "Pro Robot x12", "Buy 5 upgrades of q2", () => q2.level > 4);
-    theory.createAchievement(4, ac1, "Legend", "buy 25 upgrades of c2", () => c2.level > 24);
-    theory.createAchievement(5, ac1, "Legend 2.0", "buy 100 upgrades of q1", () => q1.level > 99);
-    theory.createAchievement(6, ac1, "god", "buy 100 upgrades of q2", () => q2.level > 99);
-    theory.createSecretAchievement(7, ac1, "How?", "buy 1000 upgrades of q1", "spam", () => q1.level > 999);
-    
-    ac2 = theory.createAchievementCategory(1, "Publish and tau");
-    theory.createAchievement(8, ac2, "Pro Beginner", "Publish one time", () => theory.publicationMultiplier > 1);
-    theory.createAchievement(9, ac2, "a hundred", "Make multiplier greater then 100", () => theory.publicationMultiplier > 99.999);
-    theory.createAchievement(10, ac2, "Super power", "Make multiplier greater then 1000", () => theory.publicationMultiplier > 999.999);                                        
+    //// Achievements                                        
   
     ///////////////////////
     //// Milestone Upgrades
@@ -164,10 +84,6 @@ var tick = (elapsedTime, multiplier) => {
 
     if (time >= timeLimit - 1e-8) {
         let tickPower = tickspeed * BigNumber.from(time * multiplier);
-
-        rhoNm2 = rhoNm1;
-        rhoNm1 = rhoN;
-        rhoN = currency.value;
 
         let bonus = theory.publicationMultiplier;
         let vc1 = getC1(c1.level).pow(getC1Exponent(c1Exp.level));
