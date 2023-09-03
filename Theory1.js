@@ -79,9 +79,8 @@ var get2DGraphValue = () => currency.value.sign * (BigNumber.ONE + currency.valu
 
 var postPublish = () => {
     time = 0;
-    rhoN = BigNumber.ZERO;
-    rhoNm1 = BigNumber.ZERO;
-    rhoNm2 = BigNumber.ZERO;
+    currency.value = BigNumber.ZERO;
+    currency2.value = BigNumber.ZERO;
     theory.invalidateTertiaryEquation();
 }
 
