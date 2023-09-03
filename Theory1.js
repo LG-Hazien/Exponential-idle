@@ -48,7 +48,6 @@ var init = () => {
 }
 
 var tick = (elapsedTime, multiplier) => {
-    let tickspeed = getTickspeed();
 
     if (tickspeed.isZero)
         return;
