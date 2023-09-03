@@ -86,13 +86,6 @@ var postPublish = () => {
     theory.invalidateTertiaryEquation();
 }
 
-var getQ1 = (level) => Utils.getStepwisePowerSum(level, 2, 10, 0);
-var getQ2 = (level) => BigNumber.TWO.pow(level);
-var getC1 = (level) => Utils.getStepwisePowerSum(level, 2, 10, 1);
-var getC1Exponent = (level) => BigNumber.from(1 + 0.05 * level);
-var getC2 = (level) => BigNumber.TWO.pow(level);
-var getC3 = (level) => BigNumber.TEN.pow(level);
-var getC4 = (level) => BigNumber.TEN.pow(level);
-var getTickspeed = () => getQ1(q1.level) * getQ2(q2.level);
+var getS1 = (level) => s1.level;
 
 init();
