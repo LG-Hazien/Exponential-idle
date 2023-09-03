@@ -44,7 +44,6 @@ var init = () => {
   
     ///////////////////////
     //// Milestone Upgrades
-    theory.setMilestoneCost(new LinearCost(1e20, 1e10));
 }
 
 var tick = (elapsedTime, multiplier) => {
