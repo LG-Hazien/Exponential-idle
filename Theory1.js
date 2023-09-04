@@ -22,7 +22,7 @@ var init = () => {
     ///////////////////
     // Regular Upgrades
 
-    // s1 (Free)
+    // s1
     {
         let getDesc = (level) => "s_1=" + getS1.toString(0);
         s1 = theory.createUpgrade(0, currency, new FirstFreeCost(new ExponentialCost(800, 1.44))));
@@ -64,12 +64,11 @@ var tick = (elapsedTime, multiplier) => {
         currency2.value = Math.floor(time / 30)
 
         time = 0;
-        theory.invalidatePrimaryEquation();
     }
 }
 
 var getPrimaryEquation = () => {
-    let result = "c_1";
+    let result = "s_1";
  
     return result;
 }
