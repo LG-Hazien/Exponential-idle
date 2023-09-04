@@ -58,10 +58,10 @@ var tick = (elapsedTime, multiplier) => {
 
     if (time >= timeLimit - 1e-8) {
         let bonus = theory.publicationMultiplier;
-        let q1 = getC1(c1.level);
+        let s1 = getS1(c1.level);
 
         currency.value = bonus * q1 * time;
-        currency2.value = Math.floor(time / 30)
+        currency2.value = time / 30
 
         time = 0;
     }
