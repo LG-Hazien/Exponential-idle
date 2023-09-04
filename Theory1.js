@@ -64,6 +64,7 @@ var tick = (elapsedTime, multiplier) => {
         currency2.value = Math.floor(time / 30)
 
         time = 0;
+        theory.invalidatePrimaryEquation();
     }
 }
 
@@ -82,7 +83,6 @@ var postPublish = () => {
     time = 0;
     currency.value = BigNumber.ZERO;
     currency2.value = BigNumber.ZERO;
-    theory.invalidateTertiaryEquation();
 }
 
 var getS1 = (level) => s1.level;
