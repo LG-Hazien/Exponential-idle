@@ -10,8 +10,6 @@ var description = "The Classic Machine Theory";
 var authors = "JojoGames320";
 var version = 1;
 
-var time = 0;
-
 var currency, currency2;
 var s1;
 
@@ -48,23 +46,11 @@ var init = () => {
 }
 
 var tick = (elapsedTime, multiplier) => {
-    let tickspeed = getTickspeed();
-    
-    if (tickspeed.isZero)
-        return;
+    let bonus = theory.publicationMultiplier;
+    let s1 = getS1(c1.level);
 
-    let timeLimit = 1 / tickspeed.Min(BigNumber.TEN).toNumber();
-    time += elapsedTime;
-
-    if (time >= timeLimit - 1e-8) {
-        let bonus = theory.publicationMultiplier;
-        let s1 = getS1(c1.level);
-
-        currency.value = bonus * q1 * time;
-        currency2.value = time / 30
-
-        time = 0;
-    }
+    currency.value = dt * bonus * q1 * time;
+    currency2.value = dt / 30
 }
 
 var getPrimaryEquation = () => {
