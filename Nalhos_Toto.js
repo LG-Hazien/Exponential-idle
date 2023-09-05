@@ -28,3 +28,15 @@ var init = () => {
         j1.getInfo = (amount) => Utils.getMathTo(getDesc(k.level), getDesc(k.level + 1));
     }
 }
+
+var tick = (elapsedTime, multiplier) => {
+    let dt = BigNumber.from(elapsedTime * multiplier);
+    let bonus = theory.publicationMultiplier;
+    currency.value += dt * bonus * getJ1(j1.level)
+}
+
+var getPrimaryEquation = () => {
+    let result = "j_1";
+
+    return result;
+}
