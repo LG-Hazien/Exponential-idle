@@ -9,3 +9,8 @@ var name = "Nalhos Toto";
 var description = "Welcome to Nalhos Toto Theory!";
 var authors = "Skyhigh173";
 var version = "1.0.0";
+
+
+var currency;
+var j1, j2;
+
