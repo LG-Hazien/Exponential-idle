@@ -32,3 +32,9 @@ var getMainPanel = () => {
         ]
     })]})
 }
+
+var getPrimaryEquation = () => {
+    let r = `\\text{You published ${DECKS} Decks.}`
+    if (count.inf > bf(0)) r += `\\\\ \\text{You have ${InfinityPoint.toString(0)} Infinity Points.}`
+    return r
+}
