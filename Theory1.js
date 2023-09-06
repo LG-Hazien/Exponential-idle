@@ -25,14 +25,14 @@ var init = () => {
         let getDesc = (level) => "s_1=" + getS1.toString(0);
         s1 = theory.createUpgrade(0, currency, new FirstFreeCost(new ExponentialCost(800, 1.44))));
         s1.getDescription = (_) => Utils.getMath(getDesc(s1.level));
-        s1.getInfo = (amount) => boughtOrRefunded = (_) => Theory.invalidateTertitaryEquation();
+        s1.getInfo = (amount) => boughtOrRefunded = (_) => "s_1=" + getS1.string(0);
     }
 
     /////////////////////
     // Permanent Upgrades
     theory.createPublicationUpgrade(0, currency, 1e18);
     theory.createBuyAllUpgrade(1, currency, 1e21);
-    theory.createAutoBuyerUpgrade(2, currency, 1e48);
+    theory.createAutoBuyerUpgrade(2, currency2, 1e48);
     
     /////////////////
     //// Achievements   
