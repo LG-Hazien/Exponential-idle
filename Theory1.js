@@ -65,7 +65,6 @@ var getTau = () => currency.value;
 var get2DGraphValue = () => currency.value.sign * (BigNumber.ONE + currency.value.abs()).log10().toNumber();
 
 var postPublish = () => {
-    time = 0;
     currency.value = BigNumber.ZERO;
     currency2.value = BigNumber.ZERO;
 }
