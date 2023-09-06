@@ -49,8 +49,8 @@ var tick = (elapsedTime, multiplier) => {
     let bonus = theory.publicationMultiplier;
     let s1 = getS1(c1.level);
 
-    currency.value = dt * bonus * q1 * time;
-    currency2.value = dt / 30
+    currency.value += bonus * q1 * time;
+    currency2.value += BigNumber.from("0.03333333333333")
 }
 
 var getPrimaryEquation = () => {
