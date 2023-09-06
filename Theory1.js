@@ -32,7 +32,7 @@ var init = () => {
     // Permanent Upgrades
     theory.createPublicationUpgrade(0, currency, 1e18);
     theory.createBuyAllUpgrade(1, currency, 1e21);
-    theory.createAutoBuyerUpgrade(2, currency2, 1000);
+    theory.createAutoBuyerUpgrade(2, currency, 1e48);
     
     /////////////////
     //// Achievements   
