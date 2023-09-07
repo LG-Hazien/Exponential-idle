@@ -40,4 +40,5 @@ var getPrimaryEquation = () => {
     return r
 }
 
+var get2DGraphValue = () => BigNumber.ZERO;
 getMainPanel();
