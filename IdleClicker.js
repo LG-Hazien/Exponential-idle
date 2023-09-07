@@ -6,3 +6,6 @@ import { Utils } from "../api/Utils";
 
 var id = "idleclicker"
 var name = "Idle Clicker"
+var description = "No Theory description.";
+var authors = "JojoGames320";
+var version = "1.0.0";
