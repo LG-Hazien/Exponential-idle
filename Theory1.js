@@ -50,7 +50,7 @@ var tick = (elapsedTime, multiplier) => {
     let bonus = theory.publicationMultiplier;
     let s1 = getS1(s1.level);
 
-    currency.value += bonus * q1 * time;
+    currency.value += bonus * q1 * time * dt;
     currency2.value += BigNumber.from("0.03333333333333")
 }
 
@@ -60,8 +60,8 @@ var getPrimaryEquation = () => {
     return result;
 }
 
-var getPublicationMultiplier = (tau) => BigNumber.ONE + (((currency.value.log10() - 18) * 3333.33);
-var getPublicationMultiplierFormula = (symbol) => "\\frac{{" + symbol + "}^{0.164}}{3}";
+var getPublicationMultiplier = (tau) => tau.pow(0.1);
+var getPublicationMultiplierFormula = (symbol) => "\\frac{{" + symbol + "}^{0.1}}";
 var getTau = () => currency.value;
 var get2DGraphValue = () => BigNumber.ZERO;
 
