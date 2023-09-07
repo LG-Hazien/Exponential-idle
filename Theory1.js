@@ -14,7 +14,7 @@ var currency, currency2;
 var s1;
 
 var init = () => {
-    currency = theory.createCurrency("currency", "CM");
+    currency = theory.createCurrency("currency", "M");
     currency2 = theory.createCurrency("currency2", "N");
 
     ///////////////////
