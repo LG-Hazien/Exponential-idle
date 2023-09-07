@@ -69,6 +69,6 @@ var postPublish = () => {
     currency2.value = BigNumber.ZERO;
 }
 
-var getS1 = (level) => s1.level;
+var getS1 = (level) => level;
 
 init();
