@@ -9,3 +9,7 @@ var name = "Idle Clicker"
 var description = "No Theory description.";
 var authors = "JojoGames320";
 var version = "1.0.0";
+
+var currency;
+
+currency = theory.createCurrency();
