@@ -5,8 +5,8 @@ import { theory } from "../api/Theory";
 import { Utils } from "../api/Utils";
 
 var id = "ClassicMachine";
-var name = "Classic Machine Theory";
-var description = "The Classic Machine Theory";
+var name = "CMT";
+var description = "The Classic Machine Theory\nCMT = Classic Machine Theory";
 var authors = "JojoGames320";
 var version = "1.0.0";
 
@@ -60,7 +60,7 @@ var getPrimaryEquation = () => {
     return result;
 }
 
-var getPublicationMultiplier = (tau) => tau.pow(0.1);
+var getPublicationMultiplier = (tau) => BigNumber.ONE + (((currency.value.log10() - 18) * 3333.33));
 var getPublicationMultiplierFormula = (symbol) => "\\frac{{" + symbol + "}^{0.1}}";
 var getTau = () => currency.value;
 var get2DGraphValue = () => BigNumber.ZERO;
