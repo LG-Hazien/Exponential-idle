@@ -48,7 +48,6 @@ var init = () => {
 var tick = (elapsedTime, multiplier) => {
     let dt = BigNumber.from(elapsedTime * multiplier);
     let bonus = theory.publicationMultiplier;
-    let s1 = getS1(s1.level);
 
     currency.value += bonus * q1 * time * dt;
     currency2.value += BigNumber.from("0.03333333333333")
