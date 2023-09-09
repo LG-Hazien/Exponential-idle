@@ -60,7 +60,7 @@ var getPrimaryEquation = () => {
     return result;
 }
 
-var getPublicationMultiplier = (tau) => BigNumber.ONE + (((BigNumber.from(currency.value.log10() + BigNumber.ONE) - 18) * 3333.33));
+var getPublicationMultiplier = (tau) => tau.log2();
 var getPublicationMultiplierFormula = (symbol) => "\\frac{{" + symbol + "}^{0.1}}";
 var getTau = () => currency.value;
 var get2DGraphValue = () => BigNumber.ZERO;
